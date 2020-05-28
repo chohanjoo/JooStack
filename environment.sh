@@ -6,14 +6,14 @@ RABBIT_PASS=root
 HOSTNAME=controller
 
 # OpenStack packages for Ubuntu
-echo "\n\n[STEP] OpenStack packages for Ubuntu\n\n"
+echo -e "\n\n[STEP] OpenStack packages for Ubuntu\n\n"
 
 add-apt-repository cloud-archive:stein
 apt update && apt dist-upgrade -y
 apt install python3-openstackclient -y
 
 # SQL database for Ubuntu
-echo "\n\n[STEP] SQL database for Ubuntu\n\n"
+echo -e "\n\n[STEP] SQL database for Ubuntu\n\n"
 apt install mariadb-server python-pymysql -y
 
 echo "[mysqld]
@@ -59,7 +59,7 @@ echo "$SECURE_MYSQL"
 aptitude -y purge expect
 
 # Message queue for Ubuntu
-echo "\n\n[STEP] Message queue for Ubuntu\n\n"
+echo -e "\n\n[STEP] Message queue for Ubuntu\n\n"
 
 apt install rabbitmq-server -y
 rabbitmqctl add_user openstack $RABBIT_PASS
@@ -67,7 +67,7 @@ rabbitmqctl set_permissions openstack ".*" ".*" ".*"
 
 
 # Memcached for Ubuntu
-echo "\n\n[STEP] Memcached for Ubuntu\n\n"
+echo -e "\n\n[STEP] Memcached for Ubuntu\n\n"
 
 apt install memcached python-memcache -y
 sed -i 's/-l 127.0.0.1/-l 10.0.0.11/' /etc/memcached.conf
@@ -75,7 +75,7 @@ service memcached restart
 
 
 # Etcd for Ubuntu
-echo "\n\n[STEP] Etcd for Ubuntu\n\n"
+echo -e "\n\n[STEP] Etcd for Ubuntu\n\n"
 
 apt install etcd -y
 
